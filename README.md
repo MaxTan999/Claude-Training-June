@@ -1,8 +1,13 @@
 # Sterling &amp; Vale Advisory
 
-A single-page static website for **Sterling &amp; Vale Advisory** — calm, trustworthy long-term wealth management for professionals and families.
+A single-page static website for **Sterling &amp; Vale Advisory** — fiduciary, long-term wealth management for professionals and families.
 
-The entire site is a self-contained [index.html](index.html) (HTML + inline CSS, Google Fonts, no build step).
+The site is built as a **lead-magnet landing page**: its single goal is to get qualified
+visitors to claim a free **"Wealth Health Check"** by submitting the enquiry form. It uses
+a purple-themed visual identity (deep aubergine + champagne-gold accents) with Fraunces and
+Inter typography.
+
+The entire site is a self-contained [index.html](index.html) (HTML + inline CSS + vanilla JS, Google Fonts, no build step).
 
 ![Sterling & Vale Advisory — homepage screenshot](assets/screenshot.png)
 
@@ -11,6 +16,19 @@ The entire site is a self-contained [index.html](index.html) (HTML + inline CSS,
 Deployed via GitHub Pages:
 
 **https://maxtan999.github.io/Claude-Training-June/**
+
+## Features
+
+- **Lead-magnet hero** with an offer card (free Wealth Health Check) and trust stats.
+- **Mid-page conversion banner** and a benefit-driven enquiry form with a "what happens next" 3-step.
+- **Enquiry form** posts via [FormSubmit](https://formsubmit.co) AJAX — submissions are
+  emailed to the site owner. (FormSubmit needs a **one-time activation**: the first
+  submission triggers a confirmation email; click its link and the form works thereafter.)
+  Includes inline validation and a honeypot anti-spam field.
+- **Auto-rotating testimonial carousel**, scroll-in reveal animations, sticky nav, responsive/mobile menu.
+- **SEO**: optimised title/meta description, canonical, Open Graph & Twitter cards, and
+  `FinancialService` JSON-LD structured data (incl. the free-offer markup).
+- **Accessibility/quality floor**: keyboard focus styles, reduced-motion support, ARIA labelling.
 
 ## Local preview
 
@@ -42,7 +60,13 @@ In the repository **Settings → Pages → Build and deployment**, set **Source*
 
 ```
 .
-├── index.html                    # The complete static site
-├── README.md                     # This file
-└── .github/workflows/deploy.yml  # GitHub Pages deploy workflow
+├── index.html                       # The complete static lead-magnet site
+├── README.md                        # This file
+├── assets/screenshot.png            # Homepage preview
+├── .github/workflows/deploy.yml     # GitHub Pages deploy workflow
+└── .claude/
+    ├── product-marketing.md         # Marketing context (read by the seo-audit skill)
+    └── skills/                      # Project-level Claude Code skills
+        ├── frontend-design/         #   (from anthropics/skills)
+        └── seo-audit/               #   (from coreyhaines31/marketingskills)
 ```
