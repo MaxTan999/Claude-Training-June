@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sterling & Vale Advisory — calm, trustworthy long-term wealth management for professionals and families." />
+  <title>Sterling &amp; Vale Advisory — Long-Term Wealth Management</title>
+
+  <!-- Google Fonts: Playfair Display (serif headings) + Inter (sans body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS (CSS custom properties)
+       ============================================================ */
+    :root {
+      /* Palette: deep navy/slate primary + muted gold accent on off-white */
+      --color-navy: #0f1f33;
+      --color-navy-deep: #0a1626;
+      --color-slate: #2b3c52;
+      --color-slate-soft: #5a6b80;
+      --color-gold: #b9985a;
+      --color-gold-soft: #d4bb8a;
+      --color-bg: #f8f6f1;       /* off-white */
+      --color-surface: #ffffff;
+      --color-surface-alt: #f1ede4;
+      --color-text: #1d2939;
+      --color-text-muted: #5a6b80;
+      --color-line: #e4ddce;
+      --color-success: #2f7a55;
+      --color-error: #b3402f;
+
+      /* Typography */
+      --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+      --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+      /* Spacing scale */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.75rem;
+      --space-lg: 3rem;
+      --space-xl: 5rem;
+      --space-2xl: 7rem;
+
+      /* Misc */
+      --radius: 14px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 3px rgba(15, 31, 51, 0.06), 0 6px 18px rgba(15, 31, 51, 0.05);
+      --shadow-md: 0 8px 30px rgba(15, 31, 51, 0.10);
+      --maxw: 1180px;
+      --nav-h: 72px;
+      --transition: 0.25s ease;
+    }
+
+    /* ============================================================
+       RESET / BASE
+       ============================================================ */
+    *,
+    *::before,
+    *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--nav-h); /* offset sticky nav for anchors */
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-serif);
+      color: var(--color-navy);
+      line-height: 1.2;
+      margin: 0 0 var(--space-sm);
+      font-weight: 600;
+    }
+
+    p { margin: 0 0 var(--space-sm); }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: 100%;
+      max-width: var(--maxw);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+    }
+
+    section { padding-block: var(--space-2xl); }
+
+    .eyebrow {
+      font-family: var(--font-sans);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--color-gold);
+      margin-bottom: var(--space-xs);
+    }
+
+    .section-head {
+      max-width: 640px;
+      margin-bottom: var(--space-lg);
+    }
+    .section-head h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
+    .section-head p { color: var(--color-text-muted); font-size: 1.05rem; }
+    .section-head.center { margin-inline: auto; text-align: center; }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.98rem;
+      padding: 0.85rem 1.6rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform var(--transition), background var(--transition), box-shadow var(--transition), color var(--transition);
+    }
+    .btn-primary {
+      background: var(--color-gold);
+      color: var(--color-navy-deep);
+    }
+    .btn-primary:hover { background: var(--color-gold-soft); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .btn-outline {
+      background: transparent;
+      color: var(--color-navy);
+      border-color: var(--color-line);
+    }
+    .btn-outline:hover { border-color: var(--color-gold); color: var(--color-gold); }
+    .btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* ============================================================
+       NAVBAR (sticky)
+       ============================================================ */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: rgba(248, 246, 241, 0.85);
+      backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+    }
+    .navbar.scrolled {
+      border-bottom-color: var(--color-line);
+      box-shadow: 0 2px 14px rgba(15, 31, 51, 0.05);
+    }
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--color-navy);
+      letter-spacing: 0.01em;
+    }
+    .brand .mark {
+      width: 34px; height: 34px;
+      flex: 0 0 auto;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      list-style: none;
+      margin: 0; padding: 0;
+    }
+    .nav-links a {
+      padding: 0.5rem 0.9rem;
+      border-radius: var(--radius-sm);
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--color-slate);
+      transition: color var(--transition), background var(--transition);
+    }
+    .nav-links a:hover { color: var(--color-navy); background: var(--color-surface-alt); }
+    .nav-links .btn { margin-left: 0.5rem; padding: 0.6rem 1.1rem; }
+
+    /* Hamburger */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 44px; height: 44px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px; height: 2px;
+      margin-inline: auto;
+      background: var(--color-navy);
+      border-radius: 2px;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      padding-block: var(--space-xl);
+      color: #eef2f7;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(10, 22, 38, 0.92) 0%, rgba(15, 31, 51, 0.88) 45%, rgba(43, 60, 82, 0.86) 100%),
+        radial-gradient(120% 90% at 80% 10%, rgba(185, 152, 90, 0.25) 0%, transparent 55%);
+      background-color: var(--color-navy-deep);
+    }
+    /* subtle texture overlay */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 26px 26px;
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 720px; }
+    .hero h1 {
+      color: #ffffff;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 600;
+      margin-bottom: var(--space-md);
+    }
+    .hero h1 .accent { color: var(--color-gold-soft); font-style: italic; }
+    .hero .lede {
+      font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+      color: #cdd6e2;
+      max-width: 560px;
+      margin-bottom: var(--space-lg);
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
+    .hero .btn-outline { color: #fff; border-color: rgba(255,255,255,0.35); }
+    .hero .btn-outline:hover { border-color: var(--color-gold-soft); color: var(--color-gold-soft); }
+
+    /* Trust stats */
+    .stats {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+      max-width: 680px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: var(--space-lg);
+    }
+    .stat .num {
+      font-family: var(--font-serif);
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      color: var(--color-gold-soft);
+      font-weight: 600;
+      line-height: 1;
+    }
+    .stat .label { font-size: 0.9rem; color: #b8c2d0; margin-top: 0.35rem; }
+
+    /* ============================================================
+       SERVICES
+       ============================================================ */
+    .services { background: var(--color-bg); }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: var(--space-md);
+    }
+    .service-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--color-gold-soft); }
+    .service-icon {
+      width: 52px; height: 52px;
+      display: grid; place-items: center;
+      border-radius: 12px;
+      background: var(--color-surface-alt);
+      color: var(--color-gold);
+      margin-bottom: var(--space-sm);
+    }
+    .service-icon svg { width: 26px; height: 26px; }
+    .service-card h3 { font-size: 1.2rem; }
+    .service-card p { color: var(--color-text-muted); font-size: 0.96rem; margin: 0; }
+
+    /* ============================================================
+       ABOUT
+       ============================================================ */
+    .about { background: var(--color-surface-alt); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    .about-copy p { color: var(--color-text-muted); font-size: 1.05rem; }
+    .about-points { list-style: none; margin: var(--space-md) 0 0; padding: 0; display: grid; gap: 0.75rem; }
+    .about-points li { display: flex; gap: 0.65rem; align-items: flex-start; color: var(--color-text); }
+    .about-points svg { flex: 0 0 auto; width: 22px; height: 22px; color: var(--color-gold); margin-top: 2px; }
+    .about-visual {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      min-height: 340px;
+      background:
+        linear-gradient(160deg, rgba(15,31,51,0.85), rgba(43,60,82,0.6)),
+        url("https://picsum.photos/id/1067/800/900") center/cover no-repeat;
+    }
+
+    /* ============================================================
+       TESTIMONIALS (carousel)
+       ============================================================ */
+    .testimonials { background: var(--color-navy); color: #e8edf4; }
+    .testimonials h2 { color: #fff; }
+    .testimonials .eyebrow { color: var(--color-gold-soft); }
+    .testimonials .section-head p { color: #b8c2d0; }
+
+    .carousel { position: relative; max-width: 760px; margin-inline: auto; }
+    .carousel-track { overflow: hidden; }
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .testimonial {
+      flex: 0 0 100%;
+      padding: var(--space-md) var(--space-xs);
+      text-align: center;
+    }
+    .testimonial .quote-mark {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      line-height: 0.5;
+      color: var(--color-gold-soft);
+      display: block;
+      margin-bottom: var(--space-sm);
+    }
+    .testimonial blockquote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+      font-weight: 500;
+      color: #fff;
+      margin: 0 0 var(--space-md);
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .testimonial .client {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+    .avatar {
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      background: var(--color-gold);
+      color: var(--color-navy-deep);
+      font-weight: 600;
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      flex: 0 0 auto;
+    }
+    .client-meta { text-align: left; }
+    .client-meta .name { font-weight: 600; color: #fff; }
+    .client-meta .role { font-size: 0.88rem; color: #aeb9c8; }
+
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+    .carousel-btn {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      display: grid; place-items: center;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .carousel-btn:hover { background: rgba(255,255,255,0.1); border-color: var(--color-gold-soft); }
+    .dots { display: flex; gap: 0.5rem; }
+    .dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      padding: 0;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .dot.active { background: var(--color-gold-soft); transform: scale(1.25); }
+
+    /* ============================================================
+       CONTACT / ENQUIRY FORM
+       ============================================================ */
+    .contact { background: var(--color-bg); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: var(--space-xl);
+      align-items: start;
+    }
+    .contact-aside h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
+    .contact-aside p { color: var(--color-text-muted); font-size: 1.05rem; }
+    .contact-aside .detail {
+      display: flex; gap: 0.65rem; align-items: center;
+      margin-top: var(--space-sm); color: var(--color-text);
+    }
+    .contact-aside .detail svg { width: 20px; height: 20px; color: var(--color-gold); flex: 0 0 auto; }
+
+    .form-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius);
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      box-shadow: var(--shadow-md);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); }
+    .field { margin-bottom: var(--space-sm); }
+    .field label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--color-slate);
+      margin-bottom: 0.4rem;
+    }
+    .field .req { color: var(--color-gold); }
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      color: var(--color-text);
+      background: var(--color-bg);
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 0.85rem;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--color-gold);
+      box-shadow: 0 0 0 3px rgba(185, 152, 90, 0.18);
+    }
+    .field textarea { resize: vertical; min-height: 120px; }
+    .field .error-msg {
+      display: none;
+      color: var(--color-error);
+      font-size: 0.82rem;
+      margin-top: 0.35rem;
+    }
+    .field.invalid input,
+    .field.invalid select,
+    .field.invalid textarea { border-color: var(--color-error); }
+    .field.invalid .error-msg { display: block; }
+
+    /* Honeypot — visually & semantically hidden from real users */
+    .hp {
+      position: absolute !important;
+      left: -9999px !important;
+      width: 1px; height: 1px;
+      overflow: hidden;
+      opacity: 0;
+    }
+
+    .form-foot {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-xs);
+      flex-wrap: wrap;
+    }
+    .form-foot .note { font-size: 0.82rem; color: var(--color-text-muted); }
+    .btn-block { width: 100%; }
+
+    /* Form status messages */
+    .form-status {
+      display: none;
+      padding: 1.5rem;
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+    }
+    .form-status.show { display: block; }
+    .form-status.success {
+      background: rgba(47, 122, 85, 0.1);
+      border: 1px solid rgba(47, 122, 85, 0.3);
+      color: var(--color-success);
+      text-align: center;
+    }
+    .form-status.success strong { display: block; font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-success); margin-bottom: 0.35rem; }
+    .form-error-banner {
+      display: none;
+      background: rgba(179, 64, 47, 0.08);
+      border: 1px solid rgba(179, 64, 47, 0.3);
+      color: var(--color-error);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      margin-bottom: var(--space-sm);
+    }
+    .form-error-banner.show { display: block; }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      background: var(--color-navy-deep);
+      color: #b8c2d0;
+      padding-block: var(--space-lg);
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer .brand { color: #fff; }
+    .footer-tag { font-size: 0.92rem; max-width: 280px; margin-top: 0.5rem; }
+    .footer-links { display: flex; gap: var(--space-md); list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.92rem; color: #cdd6e2; transition: color var(--transition); }
+    .footer-links a:hover { color: var(--color-gold-soft); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      padding-top: var(--space-md);
+      font-size: 0.82rem;
+      color: #8895a8;
+    }
+    .footer-bottom .disclaimer { max-width: 640px; }
+
+    /* ============================================================
+       SCROLL-IN ANIMATIONS (IntersectionObserver)
+       ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+      will-change: opacity, transform;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    /* stagger helper */
+    .reveal[data-delay="1"] { transition-delay: 0.08s; }
+    .reveal[data-delay="2"] { transition-delay: 0.16s; }
+    .reveal[data-delay="3"] { transition-delay: 0.24s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .slides { transition: none; }
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
+      .about-visual { min-height: 260px; order: -1; }
+      .contact-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
+    }
+
+    @media (max-width: 760px) {
+      /* Mobile nav */
+      .nav-toggle { display: flex; }
+      .nav-links {
+        position: fixed;
+        inset: var(--nav-h) 0 auto 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: var(--color-bg);
+        border-bottom: 1px solid var(--color-line);
+        box-shadow: var(--shadow-md);
+        padding: var(--space-sm);
+        transform: translateY(-150%);
+        transition: transform 0.32s ease;
+      }
+      .nav-links.open { transform: translateY(0); }
+      .nav-links a { padding: 0.85rem 0.9rem; }
+      .nav-links .btn { margin: 0.4rem 0 0; }
+
+      .stats { grid-template-columns: 1fr; gap: var(--space-sm); text-align: left; }
+      .form-row { grid-template-columns: 1fr; }
+      section { padding-block: var(--space-xl); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <header class="navbar" id="top">
+    <div class="container nav-inner">
+      <a href="#top" class="brand" aria-label="Sterling and Vale Advisory home">
+        <!-- Inline SVG monogram mark -->
+        <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+          <rect width="40" height="40" rx="9" fill="#0f1f33"/>
+          <path d="M20 8 L30 14 V26 L20 32 L10 26 V14 Z" fill="none" stroke="#b9985a" stroke-width="1.6"/>
+          <path d="M20 13 L20 27 M14 17 L26 23 M26 17 L14 23" stroke="#d4bb8a" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        <span>Sterling &amp; Vale</span>
+      </a>
+
+      <nav aria-label="Primary">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#top">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact" class="btn btn-primary">Book a Consultation</a></li>
+        </ul>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-controls="navLinks" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <p class="eyebrow reveal">Private Wealth Advisory</p>
+        <h1 id="hero-title" class="reveal" data-delay="1">
+          Grow and protect <span class="accent">what matters</span> most.
+        </h1>
+        <p class="lede reveal" data-delay="2">
+          Sterling &amp; Vale partners with professionals and families to build durable,
+          tax-aware wealth strategies — guided by clear advice, not market noise.
+        </p>
+        <div class="hero-actions reveal" data-delay="3">
+          <a href="#contact" class="btn btn-primary">Book a Consultation</a>
+          <a href="#services" class="btn btn-outline">Explore Our Services</a>
+        </div>
+
+        <!-- Trust stats -->
+        <div class="stats reveal" data-delay="3" role="list" aria-label="Firm highlights">
+          <div class="stat" role="listitem">
+            <div class="num">$2B+</div>
+            <div class="label">Client assets advised</div>
+          </div>
+          <div class="stat" role="listitem">
+            <div class="num">20+ yrs</div>
+            <div class="label">Of fiduciary experience</div>
+          </div>
+          <div class="stat" role="listitem">
+            <div class="num">98%</div>
+            <div class="label">Client retention rate</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SERVICES
+         ============================================================ -->
+    <section class="services" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-head center reveal">
+          <p class="eyebrow">What We Do</p>
+          <h2 id="services-title">Advice for every stage of your financial life</h2>
+          <p>A focused set of services, delivered with the discipline and discretion your goals deserve.</p>
+        </div>
+
+        <div class="card-grid">
+          <!-- Wealth Planning -->
+          <article class="service-card reveal" data-delay="0">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 5-7"/>
+              </svg>
+            </div>
+            <h3>Wealth Planning</h3>
+            <p>A holistic roadmap aligning your goals, cash flow, and tax position into one clear plan.</p>
+          </article>
+
+          <!-- Retirement Strategy -->
+          <article class="service-card reveal" data-delay="1">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+              </svg>
+            </div>
+            <h3>Retirement Strategy</h3>
+            <p>Income planning designed to sustain your lifestyle confidently through every market cycle.</p>
+          </article>
+
+          <!-- Portfolio Management -->
+          <article class="service-card reveal" data-delay="2">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12a9 9 0 1 1-9-9"/><path d="M12 12V3a9 9 0 0 1 9 9z"/>
+              </svg>
+            </div>
+            <h3>Portfolio Management</h3>
+            <p>Diversified, evidence-based portfolios built around risk, time horizon, and after-tax return.</p>
+          </article>
+
+          <!-- Estate Planning -->
+          <article class="service-card reveal" data-delay="3">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M10 21v-6h4v6"/>
+              </svg>
+            </div>
+            <h3>Estate Planning</h3>
+            <p>Thoughtful structures to transfer wealth efficiently and protect the people you care about.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ABOUT
+         ============================================================ -->
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="about-copy reveal">
+          <p class="eyebrow">About the Firm</p>
+          <h2 id="about-title">A steady hand for long-term decisions</h2>
+          <p>
+            Founded on the belief that good advice should be clear, unhurried, and entirely
+            in your interest, Sterling &amp; Vale acts as a fiduciary for every client we serve.
+            We take time to understand your full picture before recommending a single thing.
+          </p>
+          <ul class="about-points">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span><strong>Fiduciary by design</strong> — we are obligated to put your interests first, always.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span><strong>Transparent fees</strong> — straightforward pricing with no hidden product commissions.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span><strong>Personal continuity</strong> — a dedicated advisor who knows your story over decades.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="about-visual reveal" data-delay="1" role="img" aria-label="Calm architectural interior representing stability and trust"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TESTIMONIALS (auto-rotating carousel)
+         ============================================================ -->
+    <section class="testimonials" id="testimonials" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div class="section-head center reveal">
+          <p class="eyebrow">Client Voices</p>
+          <h2 id="testimonials-title">Trusted across generations</h2>
+          <p>Relationships built on clarity, patience, and results that compound over time.</p>
+        </div>
+
+        <div class="carousel reveal" data-delay="1">
+          <div class="carousel-track">
+            <!-- aria-live keeps screen readers informed of slide changes -->
+            <div class="slides" id="slides" aria-live="polite">
+
+              <figure class="testimonial">
+                <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+                <blockquote>Sterling &amp; Vale gave us a plan we actually understand. For the first time, retirement feels like a date on the calendar, not a worry.</blockquote>
+                <figcaption class="client">
+                  <span class="avatar" aria-hidden="true">EM</span>
+                  <span class="client-meta">
+                    <span class="name">Eleanor Marsh</span>
+                    <span class="role">Retired Engineer</span>
+                  </span>
+                </figcaption>
+              </figure>
+
+              <figure class="testimonial">
+                <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+                <blockquote>They steadied us through two volatile years without a single panicked decision. That calm is worth more than any single return.</blockquote>
+                <figcaption class="client">
+                  <span class="avatar" aria-hidden="true">DR</span>
+                  <span class="client-meta">
+                    <span class="name">David Reyes</span>
+                    <span class="role">Small Business Owner</span>
+                  </span>
+                </figcaption>
+              </figure>
+
+              <figure class="testimonial">
+                <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+                <blockquote>The estate plan they helped structure means our children are protected and our wishes are clear. It lifted a weight we'd carried for years.</blockquote>
+                <figcaption class="client">
+                  <span class="avatar" aria-hidden="true">PK</span>
+                  <span class="client-meta">
+                    <span class="name">Priya &amp; Anil Kapoor</span>
+                    <span class="role">Physicians, Parents of Three</span>
+                  </span>
+                </figcaption>
+              </figure>
+
+            </div>
+          </div>
+
+          <div class="carousel-controls">
+            <button class="carousel-btn" id="prevBtn" aria-label="Previous testimonial">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <div class="dots" id="dots" role="tablist" aria-label="Choose testimonial"></div>
+            <button class="carousel-btn" id="nextBtn" aria-label="Next testimonial">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT / ENQUIRY FORM
+         ============================================================ -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-grid">
+        <div class="contact-aside reveal">
+          <p class="eyebrow">Get in Touch</p>
+          <h2 id="contact-title">Book a consultation</h2>
+          <p>
+            Tell us a little about your goals and we'll arrange an introductory conversation —
+            no obligation, no jargon. We typically respond within one business day.
+          </p>
+          <div class="detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m4 6 8 6 8-6"/></svg>
+            <span>advisors@sterlingvale.example</span>
+          </div>
+          <div class="detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            <span>+1 (555) 018-2400</span>
+          </div>
+        </div>
+
+        <!-- FORM CARD -->
+        <div class="form-card reveal" data-delay="1">
+          <!-- Success message (shown after submit, replaces form) -->
+          <div class="form-status success" id="formSuccess" role="status" aria-live="polite">
+            <strong>Thank you — your enquiry is on its way.</strong>
+            We'll be in touch within one business day.
+          </div>
+
+          <form id="enquiryForm" novalidate>
+            <!-- Inline error banner for network/server failures -->
+            <div class="form-error-banner" id="formError" role="alert"></div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="name">Full Name <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="name" name="name" autocomplete="name" required aria-required="true" />
+                <span class="error-msg">Please enter your name.</span>
+              </div>
+              <div class="field">
+                <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+                <input type="email" id="email" name="email" autocomplete="email" required aria-required="true" />
+                <span class="error-msg">Please enter a valid email address.</span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="phone">Phone <span style="font-weight:400;color:var(--color-text-muted)">(optional)</span></label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" />
+                <span class="error-msg">Please enter a valid phone number.</span>
+              </div>
+              <div class="field">
+                <label for="interest">Investment Interest</label>
+                <select id="interest" name="interest">
+                  <option value="Wealth Planning">Wealth Planning</option>
+                  <option value="Retirement">Retirement</option>
+                  <option value="Portfolio Management">Portfolio Management</option>
+                  <option value="Estate Planning">Estate Planning</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="message">Message / Enquiry <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="message" name="message" required aria-required="true" placeholder="Tell us briefly what you'd like help with…"></textarea>
+              <span class="error-msg">Please include a short message.</span>
+            </div>
+
+            <!-- Honeypot anti-spam field — must stay empty; hidden from users -->
+            <div class="hp" aria-hidden="true">
+              <label for="_honey">Leave this field empty</label>
+              <input type="text" id="_honey" name="_honey" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <div class="form-foot">
+              <button type="submit" class="btn btn-primary btn-block" id="submitBtn">Send Enquiry</button>
+              <span class="note">By submitting, you agree to be contacted about your enquiry.</span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="#top" class="brand">
+            <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+              <rect width="40" height="40" rx="9" fill="#16263d"/>
+              <path d="M20 8 L30 14 V26 L20 32 L10 26 V14 Z" fill="none" stroke="#b9985a" stroke-width="1.6"/>
+              <path d="M20 13 L20 27 M14 17 L26 23 M26 17 L14 23" stroke="#d4bb8a" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+            <span>Sterling &amp; Vale</span>
+          </a>
+          <p class="footer-tag">Calm, fiduciary wealth management for the long term.</p>
+        </div>
+        <nav aria-label="Footer">
+          <ul class="footer-links">
+            <li><a href="#top">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="disclaimer">
+          This website is for informational purposes only and does not constitute financial advice.
+        </p>
+        <p>&copy; <span id="year"></span> Sterling &amp; Vale Advisory. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ============================================================
+       1) MOBILE NAV TOGGLE
+       ============================================================ */
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var links = document.getElementById('navLinks');
+
+      function closeMenu() {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+
+      toggle.addEventListener('click', function () {
+        var open = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      // Close the mobile menu after tapping a link
+      links.addEventListener('click', function (e) {
+        if (e.target.closest('a')) closeMenu();
+      });
+
+      // Close on resize back to desktop
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 760) closeMenu();
+      });
+    })();
+
+    /* ============================================================
+       2) NAVBAR SHADOW ON SCROLL
+       ============================================================ */
+    (function () {
+      var nav = document.querySelector('.navbar');
+      function onScroll() {
+        nav.classList.toggle('scrolled', window.scrollY > 8);
+      }
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+
+    /* ============================================================
+       3) SCROLL-IN REVEAL ANIMATIONS (IntersectionObserver)
+       ============================================================ */
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+
+    /* ============================================================
+       4) TESTIMONIAL CAROUSEL (auto-rotate + prev/next + dots)
+       ============================================================ */
+    (function () {
+      var slides = document.getElementById('slides');
+      if (!slides) return;
+      var items = slides.children;
+      var total = items.length;
+      var dotsWrap = document.getElementById('dots');
+      var current = 0;
+      var timer = null;
+      var INTERVAL = 6000;
+
+      // Build dots
+      for (var i = 0; i < total; i++) {
+        (function (idx) {
+          var dot = document.createElement('button');
+          dot.className = 'dot' + (idx === 0 ? ' active' : '');
+          dot.setAttribute('role', 'tab');
+          dot.setAttribute('aria-label', 'Show testimonial ' + (idx + 1));
+          dot.addEventListener('click', function () { goTo(idx); restart(); });
+          dotsWrap.appendChild(dot);
+        })(i);
+      }
+      var dots = dotsWrap.children;
+
+      function goTo(n) {
+        current = (n + total) % total;
+        slides.style.transform = 'translateX(-' + (current * 100) + '%)';
+        for (var i = 0; i < dots.length; i++) {
+          dots[i].classList.toggle('active', i === current);
+        }
+      }
+      function next() { goTo(current + 1); }
+      function prev() { goTo(current - 1); }
+
+      function start() { timer = setInterval(next, INTERVAL); }
+      function stop() { if (timer) { clearInterval(timer); timer = null; } }
+      function restart() { stop(); start(); }
+
+      document.getElementById('nextBtn').addEventListener('click', function () { next(); restart(); });
+      document.getElementById('prevBtn').addEventListener('click', function () { prev(); restart(); });
+
+      // Pause auto-rotation on hover/focus for usability
+      var carousel = slides.closest('.carousel');
+      carousel.addEventListener('mouseenter', stop);
+      carousel.addEventListener('mouseleave', start);
+      carousel.addEventListener('focusin', stop);
+      carousel.addEventListener('focusout', start);
+
+      start();
+    })();
+
+    /* ============================================================
+       5) ENQUIRY FORM — validation + FormSubmit AJAX
+       ============================================================ */
+    (function () {
+      // ----------------------------------------------------------
+      // REPLACE_WITH_YOUR_EMAIL
+      // Put YOUR email below. FormSubmit requires a one-time
+      // activation: the FIRST submission to a new address triggers
+      // a confirmation email — click the link in it and the form
+      // will work from then on. No redirect occurs (AJAX endpoint).
+      // ----------------------------------------------------------
+      var FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/REPLACE_WITH_YOUR_EMAIL';
+
+      var form = document.getElementById('enquiryForm');
+      var successBox = document.getElementById('formSuccess');
+      var errorBanner = document.getElementById('formError');
+      var submitBtn = document.getElementById('submitBtn');
+
+      var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      function setFieldError(input, hasError) {
+        input.closest('.field').classList.toggle('invalid', hasError);
+      }
+
+      function validate() {
+        var ok = true;
+        var name = form.name;
+        var email = form.email;
+        var message = form.message;
+
+        var nameBad = name.value.trim() === '';
+        setFieldError(name, nameBad);
+        if (nameBad) ok = false;
+
+        var emailBad = !EMAIL_RE.test(email.value.trim());
+        setFieldError(email, emailBad);
+        if (emailBad) ok = false;
+
+        var msgBad = message.value.trim() === '';
+        setFieldError(message, msgBad);
+        if (msgBad) ok = false;
+
+        return ok;
+      }
+
+      // Clear a field's error state as the user corrects it
+      ['name', 'email', 'message'].forEach(function (n) {
+        form[n].addEventListener('input', function () {
+          if (form[n].closest('.field').classList.contains('invalid')) validate();
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        errorBanner.classList.remove('show');
+
+        // Honeypot: if filled, silently abort (likely a bot)
+        if (form._honey.value !== '') return;
+
+        if (!validate()) {
+          // Focus first invalid field for accessibility
+          var firstInvalid = form.querySelector('.field.invalid input, .field.invalid textarea');
+          if (firstInvalid) firstInvalid.focus();
+          return;
+        }
+
+        // Build JSON payload with FormSubmit helper fields
+        var payload = {
+          name: form.name.value.trim(),
+          email: form.email.value.trim(),
+          phone: form.phone.value.trim(),
+          interest: form.interest.value,
+          message: form.message.value.trim(),
+          _subject: 'New enquiry from Sterling & Vale website',
+          _template: 'table',
+          _captcha: 'false'
+        };
+
+        // Sending state
+        submitBtn.disabled = true;
+        var originalLabel = submitBtn.textContent;
+        submitBtn.textContent = 'Sending…';
+
+        fetch(FORMSUBMIT_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        })
+          .then(function (res) {
+            if (!res.ok) throw new Error('Request failed: ' + res.status);
+            return res.json();
+          })
+          .then(function () {
+            // Success — hide form, show friendly message
+            form.style.display = 'none';
+            successBox.classList.add('show');
+            form.reset();
+            if (successBox.focus) successBox.focus();
+          })
+          .catch(function (err) {
+            // Error — re-enable button, show inline message
+            errorBanner.textContent = 'Sorry, something went wrong sending your enquiry. Please try again, or email us directly.';
+            errorBanner.classList.add('show');
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalLabel;
+            console.warn('Enquiry submission error:', err.message);
+          });
+      });
+    })();
+
+    /* ============================================================
+       6) AUTO-UPDATING COPYRIGHT YEAR
+       ============================================================ */
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
