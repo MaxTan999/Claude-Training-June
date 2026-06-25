@@ -12,19 +12,28 @@
   <title>Private Wealth Management &amp; Financial Advisor | Sterling &amp; Vale</title>
   <meta name="description" content="Claim your free Wealth Health Check from Sterling &amp; Vale — fiduciary wealth management, retirement and estate planning for professionals and families. No obligation." />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://www.sterlingvale.example/" />
+  <link rel="canonical" href="https://maxtan999.github.io/Claude-Training-June/" />
   <meta name="theme-color" content="#4a0f17" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Free Wealth Health Check | Sterling &amp; Vale Advisory" />
   <meta property="og:description" content="A no-obligation, personalised review of your finances from a fiduciary advisor. See where you stand and what to do next." />
-  <meta property="og:url" content="https://www.sterlingvale.example/" />
+  <meta property="og:url" content="https://maxtan999.github.io/Claude-Training-June/" />
   <meta property="og:site_name" content="Sterling &amp; Vale Advisory" />
+  <!-- TODO: og:image asset still needs to be created (recommended 1200x630 PNG,
+       branded maroon + champagne-gold with the "Free Wealth Health Check" offer)
+       and saved to assets/og-image.png so social links unfurl with a preview. -->
+  <meta property="og:image" content="https://maxtan999.github.io/Claude-Training-June/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Sterling &amp; Vale Advisory — claim your free Wealth Health Check" />
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Free Wealth Health Check | Sterling &amp; Vale Advisory" />
   <meta name="twitter:description" content="A no-obligation, personalised review of your finances from a fiduciary advisor." />
+  <meta name="twitter:image" content="https://maxtan999.github.io/Claude-Training-June/assets/og-image.png" />
+  <meta name="twitter:image:alt" content="Sterling &amp; Vale Advisory — claim your free Wealth Health Check" />
 
   <!-- Structured data: FinancialService + the lead-magnet offer -->
   <script type="application/ld+json">
@@ -33,7 +42,7 @@
     "@type": "FinancialService",
     "name": "Sterling & Vale Advisory",
     "description": "Fiduciary private wealth management — wealth planning, retirement strategy, portfolio management and estate planning for professionals and families.",
-    "url": "https://www.sterlingvale.example/",
+    "url": "https://maxtan999.github.io/Claude-Training-June/",
     "email": "advisors@sterlingvale.example",
     "telephone": "+1-555-018-2400",
     "areaServed": "US",
@@ -606,6 +615,47 @@
     }
     .footer-bottom .disclaimer { max-width: 640px; }
 
+    /* Social profile links + share cluster (footer) */
+    .footer-social {
+      display: flex; align-items: center; gap: var(--space-md);
+      flex-wrap: wrap; margin-top: 0.6rem;
+    }
+    .social-group { display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap; }
+    .social-group .social-label {
+      font-family: var(--font-sans);
+      text-transform: uppercase; letter-spacing: 0.14em;
+      font-size: 0.7rem; font-weight: 600; color: #b08983;
+    }
+    .social-icons { display: flex; align-items: center; gap: 0.5rem; }
+    .social-icons a {
+      display: grid; place-items: center;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      color: #f0dcd6;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: color var(--transition), background var(--transition),
+                  border-color var(--transition), transform var(--transition);
+    }
+    .social-icons a:hover {
+      color: var(--color-plum-deep);
+      background: linear-gradient(180deg, var(--color-gold-soft), var(--color-gold));
+      border-color: var(--color-gold);
+      transform: translateY(-2px);
+    }
+    .social-icons a:focus-visible {
+      outline: 2px solid var(--color-gold-soft);
+      outline-offset: 2px;
+    }
+    .social-icons svg { width: 19px; height: 19px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .social-icons a:hover { transform: none; }
+    }
+    @media (max-width: 760px) {
+      .footer-social { gap: var(--space-sm); }
+    }
+
     /* ============================================================
        SCROLL-IN ANIMATIONS
        ============================================================ */
@@ -1155,6 +1205,56 @@
           </ul>
         </nav>
       </div>
+
+      <!-- ============================================================
+           SOCIAL: profile follow links + page share cluster
+           NOTE: This is a demo brand — the profile URLs below are
+           PLACEHOLDERS. Replace company/sterling-vale-advisory and the
+           sterlingvale handles with the brand's real social accounts.
+           Share buttons use share-intent URLs only (no third-party
+           trackers) pointing at the live deployed page.
+           ============================================================ -->
+      <div class="footer-social">
+        <div class="social-group">
+          <span class="social-label" id="follow-label">Follow us</span>
+          <div class="social-icons" role="group" aria-labelledby="follow-label">
+            <a href="https://www.linkedin.com/company/sterling-vale-advisory" target="_blank" rel="noopener" aria-label="Sterling &amp; Vale on LinkedIn (opens in a new tab)">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.07 1.4-2.07 2.85V21H9z"/></svg>
+            </a>
+            <a href="https://x.com/sterlingvale" target="_blank" rel="noopener" aria-label="Sterling &amp; Vale on X (formerly Twitter) (opens in a new tab)">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26L23 21.75h-6.66l-5.22-6.82-5.97 6.82H1.84l7.73-8.84L1 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.01 4.13H5.04z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sterlingvale" target="_blank" rel="noopener" aria-label="Sterling &amp; Vale on Facebook (opens in a new tab)">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/sterlingvale" target="_blank" rel="noopener" aria-label="Sterling &amp; Vale on Instagram (opens in a new tab)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="social-group">
+          <span class="social-label" id="share-label">Share</span>
+          <div class="social-icons" role="group" aria-labelledby="share-label">
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmaxtan999.github.io%2FClaude-Training-June%2F" target="_blank" rel="noopener" aria-label="Share on LinkedIn (opens in a new tab)">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.07 1.4-2.07 2.85V21H9z"/></svg>
+            </a>
+            <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fmaxtan999.github.io%2FClaude-Training-June%2F&amp;text=I%20just%20found%20a%20free%2C%20no-obligation%20Wealth%20Health%20Check%20from%20Sterling%20%26%20Vale%20Advisory%20%E2%80%94%20a%20fiduciary%20review%20of%20your%20finances." target="_blank" rel="noopener" aria-label="Share on X (formerly Twitter) (opens in a new tab)">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26L23 21.75h-6.66l-5.22-6.82-5.97 6.82H1.84l7.73-8.84L1 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.01 4.13H5.04z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmaxtan999.github.io%2FClaude-Training-June%2F" target="_blank" rel="noopener" aria-label="Share on Facebook (opens in a new tab)">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg>
+            </a>
+            <a href="https://wa.me/?text=I%20just%20found%20a%20free%2C%20no-obligation%20Wealth%20Health%20Check%20from%20Sterling%20%26%20Vale%20Advisory%3A%20https%3A%2F%2Fmaxtan999.github.io%2FClaude-Training-June%2F" target="_blank" rel="noopener" aria-label="Share on WhatsApp (opens in a new tab)">
+              <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.04 4C9.4 4 4 9.4 4 16.04c0 2.12.56 4.18 1.6 6L4 28l6.12-1.6a12 12 0 0 0 5.92 1.52h.01C22.68 27.92 28 22.6 28 15.96 28 9.4 22.6 4 16.04 4zm0 21.84h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.22-3.64.96.97-3.55-.24-.37a9.86 9.86 0 0 1-1.5-5.25c0-5.46 4.45-9.9 9.92-9.9 2.65 0 5.14 1.03 7.01 2.9a9.84 9.84 0 0 1 2.9 7.01c0 5.46-4.45 9.9-9.91 9.9zm5.44-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.06 2.87 1.21 3.07.15.2 2.09 3.2 5.07 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/></svg>
+            </a>
+            <a href="mailto:?subject=Free%20Wealth%20Health%20Check%20from%20Sterling%20%26%20Vale%20Advisory&amp;body=I%20thought%20you%20might%20like%20this%3A%20a%20free%2C%20no-obligation%20Wealth%20Health%20Check%20%E2%80%94%20a%20fiduciary%20review%20of%20your%20finances%20from%20Sterling%20%26%20Vale%20Advisory.%0A%0Ahttps%3A%2F%2Fmaxtan999.github.io%2FClaude-Training-June%2F" aria-label="Share by email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
       <div class="footer-bottom">
         <p class="disclaimer">
           This website is for informational purposes only and does not constitute financial advice.
