@@ -810,6 +810,51 @@
       .wa-fab-label { display: none; }
       .wa-fab { padding: 0.7rem; }
     }
+
+    /* ============================================================
+       SUCCESS CELEBRATION — floating balloons (post form submit)
+       ============================================================ */
+    .sv-balloons {
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 300;
+      overflow: hidden;
+    }
+    .sv-balloon {
+      position: absolute;
+      bottom: -150px;
+      width: 46px; height: 58px;
+      border-radius: 50% 50% 48% 48%;
+      background:
+        radial-gradient(circle at 32% 28%, rgba(255,255,255,0.55), rgba(255,255,255,0) 42%),
+        var(--balloon-color, #a8182b);
+      box-shadow: inset -4px -6px 10px rgba(0,0,0,0.18);
+      opacity: 0;
+      animation: sv-float var(--dur, 5s) ease-in forwards;
+    }
+    /* knot */
+    .sv-balloon::before {
+      content: ""; position: absolute; bottom: -5px; left: 50%;
+      width: 8px; height: 7px; transform: translateX(-50%);
+      background: var(--balloon-color, #a8182b);
+      clip-path: polygon(50% 100%, 0 0, 100% 0);
+    }
+    /* string */
+    .sv-balloon::after {
+      content: ""; position: absolute; top: 100%; left: 50%;
+      width: 1px; height: 72px;
+      background: rgba(0,0,0,0.16);
+      transform: translateX(-50%);
+    }
+    @keyframes sv-float {
+      0%   { transform: translateY(0) rotate(0deg) scale(var(--scale, 1)); opacity: 0; }
+      12%  { opacity: 0.96; }
+      50%  { transform: translateY(-58vh) rotate(var(--sway, 6deg)) scale(var(--scale, 1)); }
+      100% { transform: translateY(-118vh) rotate(calc(var(--sway, 6deg) * -1)) scale(var(--scale, 1)); opacity: 0.92; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sv-balloons { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -1507,6 +1552,8 @@
             successBox.classList.add('show');
             form.reset();
             if (successBox.focus) successBox.focus();
+            // Post-submit success hook: voice announcement + balloon celebration
+            if (window.svCelebrate) window.svCelebrate();
           })
           .catch(function (err) {
             errorBanner.textContent = 'Sorry, something went wrong sending your request. Please try again, or email us directly.';
@@ -1561,6 +1608,57 @@
       // Close on Escape or when clicking outside the widget
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePanel(); });
       document.addEventListener('click', function (e) { if (!widget.contains(e.target)) closePanel(); });
+    })();
+
+    /* ============================================================
+       8) SUCCESS CELEBRATION — voice announcement + balloons
+       Exposed as window.svCelebrate(), called from the enquiry form's
+       success handler after a submission is accepted.
+       ============================================================ */
+    (function () {
+      var COLORS = ['#a8182b', '#c92a3a', '#4a0f17', '#e6bd6f', '#f2d79c'];
+
+      function speak() {
+        try {
+          if (!('speechSynthesis' in window)) return;
+          var msg = new SpeechSynthesisUtterance(
+            'Hurray! Thank you for your submission. We will get back to you in one business day.'
+          );
+          msg.rate = 1; msg.pitch = 1.1; msg.volume = 1; msg.lang = 'en-US';
+          window.speechSynthesis.cancel();
+          window.speechSynthesis.speak(msg);
+        } catch (e) { /* speech synthesis unavailable — fail silently */ }
+      }
+
+      function balloons() {
+        // Respect reduced-motion preference
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        var layer = document.createElement('div');
+        layer.className = 'sv-balloons';
+        layer.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(layer);
+
+        var N = 18;
+        for (var i = 0; i < N; i++) {
+          var b = document.createElement('span');
+          b.className = 'sv-balloon';
+          var left = (i / N) * 100 + (Math.random() * 6 - 3);
+          b.style.cssText =
+            'left:' + Math.max(0, Math.min(96, left)).toFixed(1) + '%;' +
+            '--balloon-color:' + COLORS[i % COLORS.length] + ';' +
+            '--dur:' + (4 + Math.random() * 3).toFixed(2) + 's;' +
+            '--sway:' + (Math.random() * 16 - 8).toFixed(1) + 'deg;' +
+            '--scale:' + (0.7 + Math.random() * 0.6).toFixed(2) + ';' +
+            'animation-delay:' + (Math.random() * 0.8).toFixed(2) + 's;';
+          layer.appendChild(b);
+        }
+
+        // Clean up the layer once the animation is well past finished
+        setTimeout(function () { if (layer.parentNode) layer.parentNode.removeChild(layer); }, 9000);
+      }
+
+      window.svCelebrate = function () { speak(); balloons(); };
     })();
   </script>
 </body>
