@@ -4,6 +4,8 @@ A single-page static website for **Sterling &amp; Vale Advisory** — calm, trus
 
 The entire site is a self-contained [index.html](index.html) (HTML + inline CSS, Google Fonts, no build step).
 
+![Sterling & Vale Advisory — homepage screenshot](assets/screenshot.png)
+
 ## Live site
 
 Deployed via GitHub Pages:
