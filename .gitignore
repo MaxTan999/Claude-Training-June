@@ -1,0 +1,24 @@
+# Secrets & credentials — never commit these
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.p12
+*.keystore
+id_rsa
+id_rsa.*
+credentials.json
+service-account*.json
+.npmrc
+.pypirc
+
+# Dependencies
+node_modules/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
