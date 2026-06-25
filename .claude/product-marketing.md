@@ -15,7 +15,8 @@ enquiry form. Treat the form as the conversion event for every recommendation.
 - **Lead magnet / offer:** a free, no-obligation **"Wealth Health Check"** — a
   personalised review prospects claim by submitting the enquiry form.
 - **Form delivery:** submissions are emailed to **isaiah.hui@redbeaconam.com** via the
-  FormSubmit AJAX endpoint in `index.html`. When auditing, verify this endpoint is live
+  FormSubmit AJAX endpoint in `index.html` (recipient: **max.tan@redbeaconam.com**).
+  When auditing, verify this endpoint is live
   (FormSubmit requires one-time email activation on first submit).
 - **Conversion-first lens:** when auditing SEO, also flag anything that weakens the path
   to a form submission (weak CTAs, buried form, unclear offer, friction in fields). See
@@ -26,7 +27,7 @@ enquiry form. Treat the form as the conversion event for every recommendation.
   portfolio management, estate planning, "free wealth health check / portfolio review".
 
 ## Brand
-- **Theme:** purple — deep plum/aubergine primary with a champagne-gold accent for CTAs.
+- **Theme:** red / maroon — deep maroon primary with a champagne-gold accent for CTAs.
 - **Tone:** premium but approachable; clear, unhurried, jargon-free; trustworthy.
 - **Type:** Fraunces (display serif) + Inter (body).
 

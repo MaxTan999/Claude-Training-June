@@ -4,7 +4,7 @@ A single-page static website for **Sterling &amp; Vale Advisory** — fiduciary,
 
 The site is built as a **lead-magnet landing page**: its single goal is to get qualified
 visitors to claim a free **"Wealth Health Check"** by submitting the enquiry form. It uses
-a purple-themed visual identity (deep aubergine + champagne-gold accents) with Fraunces and
+a red & maroon visual identity (deep maroon + champagne-gold accents) with Fraunces and
 Inter typography.
 
 The entire site is a self-contained [index.html](index.html) (HTML + inline CSS + vanilla JS, Google Fonts, no build step).

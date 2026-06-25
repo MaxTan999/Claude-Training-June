@@ -13,7 +13,7 @@
   <meta name="description" content="Claim your free Wealth Health Check from Sterling &amp; Vale — fiduciary wealth management, retirement and estate planning for professionals and families. No obligation." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.sterlingvale.example/" />
-  <meta name="theme-color" content="#2a1259" />
+  <meta name="theme-color" content="#4a0f17" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -56,30 +56,30 @@
 
   <style>
     /* ============================================================
-       DESIGN TOKENS — PURPLE THEME
+       DESIGN TOKENS — RED / MAROON / GOLD THEME
        Deep aubergine/plum primary + luminous violet + champagne-gold
-       accent for conversion CTAs, on a soft lilac-white canvas.
+       accent for conversion CTAs, on a soft blush-white canvas.
        ============================================================ */
     :root {
-      /* Purple core */
-      --color-plum-deep: #150a2e;   /* near-black plum (hero / footer) */
-      --color-plum: #241046;        /* deep plum */
-      --color-purple: #6d28d9;      /* primary violet */
-      --color-purple-bright: #8b5cf6;
-      --color-lilac: #c4b5fd;       /* light accent / hero italic */
-      --color-lilac-soft: #ddd4fb;
+      /* Red & maroon core */
+      --color-plum-deep: #1c0608;   /* near-black maroon (hero / footer) */
+      --color-plum: #4a0f17;        /* deep maroon */
+      --color-purple: #a8182b;      /* primary red */
+      --color-purple-bright: #c92a3a;
+      --color-lilac: #f3b8a8;       /* light warm accent / hero italic */
+      --color-lilac-soft: #f8d3c6;
 
-      /* Champagne-gold accent — warm CTA against cool purple */
+      /* Champagne-gold accent — warm CTA on maroon */
       --color-gold: #e6bd6f;
       --color-gold-soft: #f2d79c;
 
-      /* Neutrals */
-      --color-bg: #f7f4fc;          /* soft lilac-white */
+      /* Neutrals (warm) */
+      --color-bg: #fcf5f2;          /* soft blush-white */
       --color-surface: #ffffff;
-      --color-surface-alt: #efe9fb;
-      --color-text: #211538;
-      --color-text-muted: #6b5f86;
-      --color-line: #e4dbf5;
+      --color-surface-alt: #f7e6e1;
+      --color-text: #2a1012;
+      --color-text-muted: #836063;
+      --color-line: #f0dbd5;
       --color-success: #2f7a55;
       --color-error: #c0392b;
 
@@ -98,8 +98,8 @@
       /* Misc */
       --radius: 16px;
       --radius-sm: 9px;
-      --shadow-sm: 0 1px 3px rgba(36, 16, 70, 0.06), 0 6px 18px rgba(36, 16, 70, 0.06);
-      --shadow-md: 0 10px 34px rgba(36, 16, 70, 0.14);
+      --shadow-sm: 0 1px 3px rgba(74, 15, 23, 0.06), 0 6px 18px rgba(74, 15, 23, 0.06);
+      --shadow-md: 0 10px 34px rgba(74, 15, 23, 0.14);
       --shadow-gold: 0 8px 24px rgba(230, 189, 111, 0.35);
       --maxw: 1180px;
       --nav-h: 72px;
@@ -217,7 +217,7 @@
     }
     .navbar.scrolled {
       border-bottom-color: var(--color-line);
-      box-shadow: 0 2px 14px rgba(36, 16, 70, 0.06);
+      box-shadow: 0 2px 14px rgba(74, 15, 23, 0.06);
     }
     .nav-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
     .brand {
@@ -274,9 +274,9 @@
       color: #efeaff;
       overflow: hidden;
       background:
-        radial-gradient(120% 80% at 85% 0%, rgba(139, 92, 246, 0.45) 0%, transparent 55%),
+        radial-gradient(120% 80% at 85% 0%, rgba(201, 42, 58, 0.5) 0%, transparent 55%),
         radial-gradient(90% 70% at 0% 100%, rgba(230, 189, 111, 0.16) 0%, transparent 50%),
-        linear-gradient(150deg, var(--color-plum-deep) 0%, var(--color-plum) 60%, #34165f 100%);
+        linear-gradient(150deg, var(--color-plum-deep) 0%, var(--color-plum) 60%, #6e1622 100%);
       background-color: var(--color-plum-deep);
     }
     .hero::after {
@@ -316,14 +316,14 @@
     .hero h1 .accent { color: var(--color-gold-soft); font-style: italic; }
     .hero .lede {
       font-size: clamp(1.05rem, 2.2vw, 1.28rem);
-      color: #d7cdf2;
+      color: #f0dcd6;
       max-width: 540px;
       margin-bottom: var(--space-lg);
     }
     .hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center; }
     .hero .btn-outline { color: #fff; border-color: rgba(255,255,255,0.32); }
     .hero .btn-outline:hover { border-color: var(--color-gold-soft); color: var(--color-gold-soft); }
-    .hero .reassure { margin-top: var(--space-md); font-size: 0.9rem; color: #b6a9d6; display: flex; gap: 0.5rem; align-items: center; }
+    .hero .reassure { margin-top: var(--space-md); font-size: 0.9rem; color: #d4a59c; display: flex; gap: 0.5rem; align-items: center; }
     .hero .reassure svg { width: 18px; height: 18px; color: var(--color-lilac); flex: 0 0 auto; }
 
     /* Lead-magnet offer card (the signature element) */
@@ -333,7 +333,7 @@
       border-radius: var(--radius);
       padding: clamp(1.5rem, 3vw, 2.25rem);
       backdrop-filter: blur(8px);
-      box-shadow: 0 24px 60px rgba(10, 4, 28, 0.45);
+      box-shadow: 0 24px 60px rgba(20, 3, 6, 0.45);
     }
     .offer-card .ribbon {
       display: inline-block;
@@ -345,12 +345,12 @@
       margin-bottom: var(--space-sm);
     }
     .offer-card h2 { color: #fff; font-size: clamp(1.5rem, 3vw, 1.95rem); margin-bottom: 0.4rem; }
-    .offer-card .offer-sub { color: #cdc1ed; font-size: 0.98rem; margin-bottom: var(--space-md); }
+    .offer-card .offer-sub { color: #ecd6cf; font-size: 0.98rem; margin-bottom: var(--space-md); }
     .offer-list { list-style: none; margin: 0 0 var(--space-md); padding: 0; display: grid; gap: 0.7rem; }
-    .offer-list li { display: flex; gap: 0.6rem; align-items: flex-start; color: #ece6fb; font-size: 0.97rem; }
+    .offer-list li { display: flex; gap: 0.6rem; align-items: flex-start; color: #f7ebe6; font-size: 0.97rem; }
     .offer-list svg { flex: 0 0 auto; width: 20px; height: 20px; color: var(--color-gold-soft); margin-top: 2px; }
     .offer-card .btn-block { width: 100%; }
-    .offer-card .micro { text-align: center; font-size: 0.82rem; color: #b6a9d6; margin: 0.8rem 0 0; }
+    .offer-card .micro { text-align: center; font-size: 0.82rem; color: #d4a59c; margin: 0.8rem 0 0; }
 
     /* Trust stats strip */
     .stats {
@@ -368,7 +368,7 @@
       color: var(--color-gold-soft);
       font-weight: 600; line-height: 1;
     }
-    .stat .label { font-size: 0.9rem; color: #c3b8df; margin-top: 0.35rem; }
+    .stat .label { font-size: 0.9rem; color: #e6cbc4; margin-top: 0.35rem; }
 
     /* ============================================================
        SERVICES
@@ -400,7 +400,7 @@
        LEAD-MAGNET BANNER (mid-page conversion nudge)
        ============================================================ */
     .magnet {
-      background: linear-gradient(135deg, var(--color-purple) 0%, #4c1d95 55%, var(--color-plum) 100%);
+      background: linear-gradient(135deg, var(--color-purple) 0%, #7a121f 55%, var(--color-plum) 100%);
       color: #fff;
     }
     .magnet .container {
@@ -408,7 +408,7 @@
       gap: var(--space-lg); flex-wrap: wrap;
     }
     .magnet h2 { color: #fff; font-size: clamp(1.7rem, 3.5vw, 2.3rem); margin-bottom: 0.4rem; max-width: 620px; }
-    .magnet p { color: #e4daf7; max-width: 560px; margin: 0; }
+    .magnet p { color: #f5ddd6; max-width: 560px; margin: 0; }
     .magnet .btn-primary { white-space: nowrap; }
 
     /* ============================================================
@@ -426,17 +426,17 @@
       box-shadow: var(--shadow-md);
       min-height: 340px;
       background:
-        linear-gradient(160deg, rgba(36,16,70,0.82), rgba(109,40,217,0.45)),
+        linear-gradient(160deg, rgba(74,15,23,0.82), rgba(168,24,43,0.45)),
         url("https://picsum.photos/id/1067/800/900") center/cover no-repeat;
     }
 
     /* ============================================================
        TESTIMONIALS (carousel)
        ============================================================ */
-    .testimonials { background: var(--color-plum); color: #ece6fb; }
+    .testimonials { background: var(--color-plum); color: #f7ebe6; }
     .testimonials h2 { color: #fff; }
     .testimonials .eyebrow { color: var(--color-lilac); }
-    .testimonials .section-head p { color: #c3b8df; }
+    .testimonials .section-head p { color: #e6cbc4; }
 
     .carousel { position: relative; max-width: 760px; margin-inline: auto; }
     .carousel-track { overflow: hidden; }
@@ -466,7 +466,7 @@
     }
     .client-meta { text-align: left; }
     .client-meta .name { font-weight: 600; color: #fff; }
-    .client-meta .role { font-size: 0.88rem; color: #b6a9d6; }
+    .client-meta .role { font-size: 0.88rem; color: #d4a59c; }
 
     .carousel-controls { display: flex; align-items: center; justify-content: center; gap: var(--space-md); margin-top: var(--space-md); }
     .carousel-btn {
@@ -552,7 +552,7 @@
     .field textarea:focus {
       outline: none;
       border-color: var(--color-purple);
-      box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.18);
+      box-shadow: 0 0 0 3px rgba(168, 24, 43, 0.18);
     }
     .field textarea { resize: vertical; min-height: 120px; }
     .field .error-msg { display: none; color: var(--color-error); font-size: 0.82rem; margin-top: 0.35rem; }
@@ -590,7 +590,7 @@
     /* ============================================================
        FOOTER
        ============================================================ */
-    .footer { background: var(--color-plum-deep); color: #c3b8df; padding-block: var(--space-lg); }
+    .footer { background: var(--color-plum-deep); color: #e6cbc4; padding-block: var(--space-lg); }
     .footer-top {
       display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-md);
       padding-bottom: var(--space-md); border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -598,11 +598,11 @@
     .footer .brand { color: #fff; }
     .footer-tag { font-size: 0.92rem; max-width: 280px; margin-top: 0.5rem; }
     .footer-links { display: flex; gap: var(--space-md); list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
-    .footer-links a { font-size: 0.92rem; color: #d7cdf2; transition: color var(--transition); }
+    .footer-links a { font-size: 0.92rem; color: #f0dcd6; transition: color var(--transition); }
     .footer-links a:hover { color: var(--color-gold-soft); }
     .footer-bottom {
       display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-sm);
-      padding-top: var(--space-md); font-size: 0.82rem; color: #9387b3;
+      padding-top: var(--space-md); font-size: 0.82rem; color: #b08983;
     }
     .footer-bottom .disclaimer { max-width: 640px; }
 
@@ -664,8 +664,8 @@
     <div class="container nav-inner">
       <a href="#top" class="brand" aria-label="Sterling and Vale Advisory home">
         <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
-          <rect width="40" height="40" rx="9" fill="#241046"/>
-          <path d="M20 8 L30 14 V26 L20 32 L10 26 V14 Z" fill="none" stroke="#8b5cf6" stroke-width="1.6"/>
+          <rect width="40" height="40" rx="9" fill="#4a0f17"/>
+          <path d="M20 8 L30 14 V26 L20 32 L10 26 V14 Z" fill="none" stroke="#c92a3a" stroke-width="1.6"/>
           <path d="M20 13 L20 27 M14 17 L26 23 M26 17 L14 23" stroke="#e6bd6f" stroke-width="1.4" stroke-linecap="round"/>
         </svg>
         <span>Sterling &amp; Vale</span>
@@ -1030,8 +1030,8 @@
         <div>
           <a href="#top" class="brand">
             <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
-              <rect width="40" height="40" rx="9" fill="#34165f"/>
-              <path d="M20 8 L30 14 V26 L20 32 L10 26 V14 Z" fill="none" stroke="#8b5cf6" stroke-width="1.6"/>
+              <rect width="40" height="40" rx="9" fill="#6e1622"/>
+              <path d="M20 8 L30 14 V26 L20 32 L10 26 V14 Z" fill="none" stroke="#c92a3a" stroke-width="1.6"/>
               <path d="M20 13 L20 27 M14 17 L26 23 M26 17 L14 23" stroke="#e6bd6f" stroke-width="1.4" stroke-linecap="round"/>
             </svg>
             <span>Sterling &amp; Vale</span>
@@ -1174,7 +1174,7 @@
        email — click the link in it and the form works from then on.
        ============================================================ */
     (function () {
-      var FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/isaiah.hui@redbeaconam.com';
+      var FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/max.tan@redbeaconam.com';
 
       var form = document.getElementById('enquiryForm');
       var successBox = document.getElementById('formSuccess');
